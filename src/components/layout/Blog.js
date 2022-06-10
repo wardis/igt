@@ -42,10 +42,10 @@ export const Blog = () => {
     <section>
       <Typography variant='h5'>Lorem Ipsum lorem ipsum</Typography>
       <Grid container mt={1} spacing={3} sx={{ textAlign: 'center' }}>
-        {blogArticles.map((article) => {
+        {blogArticles.map((article, index) => {
           const { title, excerpt, thumbnail } = article;
           return (
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={3} key={index}>
               <Card>
                 <CardContent>
                   <Typography variant='h5'>{title}</Typography>

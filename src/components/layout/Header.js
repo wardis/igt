@@ -1,20 +1,52 @@
 import React, { useState } from 'react';
 
 import logo from '../../logo.svg';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Lorem Ipsum', 'Lorem Ipsum', 'Lorem Ipsum'];
+import {
+  AppBar,
+  Box,
+  Stack,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Button,
+  MenuItem,
+  Divider,
+} from '@mui/material';
+// import { MenuIcon } from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
+
+const bull = (
+  <Box
+    component='span'
+    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  >
+    •
+  </Box>
+);
+
+const pages = [
+  { label: 'Lorem Ipsum' },
+  { label: 'Lorem Ipsum', style: 'button' },
+  { label: 'Lorem Ipsum', style: 'button' },
+];
 const secondaryLinks = ['Link 1', 'Link 2', 'Link 3'];
+
+const Logo = () => (
+  <Stack
+    direction='row'
+    sx={{
+      width: '150px',
+      flexGrow: 1,
+      alignItems: 'center',
+    }}
+  >
+    <img src={logo} className='App-logo' height='30px' alt='logo' />
+    <Typography>Logo</Typography>
+  </Stack>
+);
 
 export const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -23,55 +55,25 @@ export const Header = () => {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
     <AppBar position='static'>
       <Container>
         <Toolbar disableGutters>
-          {/* <Typography
-            variant='h6'
-            noWrap
-            component='a'
-            href='/'
+          <Box
             sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Company Logo
-          </Typography> */}
-          <Stack
-            direction='row'
-            sx={{
-              width: '150px',
               flexGrow: 1,
-              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              display: { xs: 'flex', md: 'none' },
             }}
           >
-            <img src={logo} className='App-logo' height='30px' alt='logo' />
-            <Typography>Logo</Typography>
-          </Stack>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size='large'
-              aria-label='account of current user'
+              edge='start'
               aria-controls='menu-appbar'
               aria-haspopup='true'
               onClick={handleOpenNavMenu}
@@ -79,7 +81,9 @@ export const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography>Menu</Typography>
+            <Typography variant='h6' component='div'>
+              Menu
+            </Typography>
             <Menu
               id='menu-appbar'
               anchorEl={anchorElNav}
@@ -98,55 +102,63 @@ export const Header = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign='center'>{page}</Typography>
+              {pages.map((page, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}>
+                  <Typography textAlign='center'>{page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant='h5'
-            noWrap
-            component='a'
-            href=''
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography> */}
+          <Logo />
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page, index) => (
+              <Button
+                key={index}
+                onClick={handleCloseNavMenu}
+                sx={{
+                  my: 2,
+                  mx: 1,
+                  color: 'white',
+                  display: 'block',
+                  textTransform: 'capitalize',
+                }}
+                variant={page.style == 'button' ? 'contained' : 'text'}
+              >
+                {page.label}
+              </Button>
+            ))}
+          </Box>
+        </Toolbar>
+        <Toolbar
+          disableGutters
+          sx={{
+            justifyContent: 'flex-end',
+            display: { xs: 'none', md: 'flex' },
+          }}
+        >
           <Stack
             direction='row'
-            sx={{
-              width: '100px',
-              display: { xs: 'flex', md: 'none' },
-              mr: 2,
-              flexGrow: 1,
-            }}
+            sx={{ display: { xs: 'none', md: 'flex' } }}
+            alignItems='center'
+            divider={bull}
           >
-            <img src={logo} className='App-logo' alt='logo' />
-            <Typography>Logo</Typography>
-          </Stack>
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {secondaryLinks.map((page, index) => (
               <Button
-                key={page}
+                key={index}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{
+                  my: 2,
+                  mx: 1,
+                  color: 'white',
+                  display: 'block',
+                  textTransform: 'capitalize',
+                }}
+                variant={page.style == 'button' ? 'contained' : 'text'}
               >
                 {page}
               </Button>
             ))}
-          </Box>
+          </Stack>
         </Toolbar>
       </Container>
     </AppBar>

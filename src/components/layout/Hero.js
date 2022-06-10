@@ -42,7 +42,7 @@ export const Hero = () => {
   ];
 
   return (
-    <Box bgcolor='gray'>
+    <Box bgcolor='#00347A'>
       <section>
         <Grid container my={4} spacing={3}>
           <Grid item xs={12} md={8}>

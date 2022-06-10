@@ -2,7 +2,7 @@ import { Box, Button, Stack, Typography, TextField } from '@mui/material';
 export const Newsletter = () => {
   return (
     <section>
-      <Stack direction='row' spacing={2}>
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
         <Typography>Abonnez-vous à notre newsletter</Typography>
         <TextField
           label='Nom'
@@ -17,7 +17,12 @@ export const Newsletter = () => {
         />
         <Button variant='contained'>S'abonner</Button>
       </Stack>
-      <Box borderBottom={10} py={3}>
+      <Box
+        borderBottom={10}
+        borderColor='#01BBD9'
+        sx={{ bgcolor: '#166BA7', color: 'white', my: 4 }}
+        py={3}
+      >
         <Typography maxWidth={600}>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet ex
           adipisci temporibus impedit aut dignissimos ratione nobis ut nostrum
