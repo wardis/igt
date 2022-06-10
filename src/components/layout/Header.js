@@ -10,15 +10,11 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = ['Lorem Ipsum', 'Lorem Ipsum', 'Lorem Ipsum'];
 const secondaryLinks = ['Link 1', 'Link 2', 'Link 3'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
