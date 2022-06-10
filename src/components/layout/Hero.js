@@ -44,7 +44,7 @@ export const Hero = () => {
   return (
     <Box bgcolor='gray'>
       <section>
-        <Grid container my={3} spacing={2}>
+        <Grid container my={4} spacing={3}>
           <Grid item xs={12} md={8}>
             <Carousel>
               {items.map((item, i) => (
